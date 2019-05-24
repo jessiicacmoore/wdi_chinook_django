@@ -1,0 +1,79 @@
+Find the albums recorded by the artist Queen.
+
+    >>> Artist.objects.get(name='Queen')
+    <Artist: Artist object (51)>
+    >>> Album.objects.filter(artist_id=51)
+    <QuerySet [<Album: Album object (32)>, <Album: Album object (181)>, <Album: Album object (182)>]>
+    >>> [a.title for a in Album.objects.filter(artist_id=51)]
+    ['Greatest Hits II', 'Greatest Hits I', 'News Of The World']
+
+
+
+Count how many tracks belong to the media type "Protected MPEG-4 video file".
+
+    >>> MediaType.objects.get(name='Protected MPEG-4 video file')
+    <MediaType: MediaType object (3)>
+    >>> Track.objects.filter(media_type=3).count()
+    214
+
+
+
+Find the genre with the name "Hip Hop/Rap".
+
+    >>> Genre.objects.get(name='Hip Hop/Rap')
+    <Genre: Genre object (17)>
+
+
+
+Count how many tracks belong to the "Hip Hop/Rap" genre
+   
+    >>> Track.objects.filter(genre=17).count()
+    35
+
+
+
+Find the total amount of time required to listen to all the tracks in the database.
+
+    >>> Track.objects.aggregate(Sum('milliseconds'))
+    {'milliseconds__sum': 1377942652}
+
+
+
+Find the highest price of any track that has the media type "MPEG audio file".
+
+    >>> MediaType.objects.get(name='MPEG audio file')
+    <MediaType: MediaType object (1)>
+    >>> Track.objects.order_by('-unit_price')
+    <QuerySet [<Track: Track object (2832)>, <Track: Track object (2840)>, <Track: Track object (2824)>, <Track: Track object (2830)>, <Track: Track object (2835)>, <Track: Track object (2839)>, <Track: Track object (2820)>, <Track: Track object (2823)>, <Track: Track object (2828)>, <Track: Track object (2829)>, <Track: Track object (2833)>, <Track: Track object (2834)>, <Track: Track object (2836)>, <Track: Track object (2837)>, <Track: Track object (2852)>, <Track: Track object (2819)>, <Track: Track object (2821)>, <Track: Track object (2822)>, <Track: Track object (2825)>, <Track: Track object (2826)>, '...(remaining elements truncated)...']>
+    >>> Track.objects.filter(media_type=1)[0].unit_price
+    Decimal('0.99')
+
+
+
+Find the name of the most expensive track that has the media type "MPEG audio file".
+   
+    >>> Track.objects.order_by('-unit_price')
+    <QuerySet [<Track: Track object (2832)>, <Track: Track object (2840)>, <Track: Track object (2824)>, <Track: Track object (2830)>, <Track: Track object (2835)>, <Track: Track object (2839)>, <Track: Track object (2820)>, <Track: Track object (2823)>, <Track: Track object (2828)>, <Track: Track object (2829)>, <Track: Track object (2833)>, <Track: Track object (2834)>, <Track: Track object (2836)>, <Track: Track object (2837)>, <Track: Track object (2852)>, <Track: Track object (2819)>, <Track: Track object (2821)>, <Track: Track object (2822)>, <Track: Track object (2825)>, <Track: Track object (2826)>, '...(remaining elements truncated)...']>
+    >>> Track.objects.filter(media_type=1)[0].name
+    'Put The Finger On You'
+
+
+
+Find the 2 oldest artists.
+
+    >>> [artist.name for artist in Artist.objects.order_by('created_at')[0:2]]
+    ['Les Arts Florissants & William Christie', 'Baby Consuelo']
+
+
+
+Find the least expensive track that has the genre "Electronica/Dance".
+    
+    Track.objects.filter(genre=15).order_by('unit_price')[0:1]
+    <QuerySet [<Track: Track object (3319)>]>
+
+
+
+Find all "MPEG audio file" tracks in the genre "Electronica/Dance".
+
+    >>> [track.name for track in Track.objects.filter(genre=15, media_type=1)]
+    ['Instinto Colectivo', 'Chapa o Coco', 'Prostituta', 'Eu So Queria Sumir', 'Tres Reis', 'Um Lugar ao Sol', 'Batalha Naval', 'O Misterio do Samba', 'Armadura', 'Na Ladeira', 'Carimbo', 'Catimbo', 'Chega no Suingue', 'Mun-Ra', 'Freestyle Love', 'Stillness In Time', 'Journey To Arnhemland', 'Just Another Story', 'Todo o Carnaval tem seu Fim', 'Funk de Bamba', 'Half The Man', 'Light Years', 'Manifest Destiny', 'The Kids', 'Mr. Moon', 'Scam', 'Morning Glory', 'Space Cowboy']
