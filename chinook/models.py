@@ -17,11 +17,14 @@ class MediaType(models.Model):
     name = models.CharField(max_length=255, null=False)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
+    albums = models.ManyToManyField(Album, through="Track", related_name="media_types")
 
 class Genre(models.Model):
     name = models.CharField(max_length=255, null=False)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
+    media_types = models.ManyToManyField(MediaType, through="Track", related_name="genres")
+    albums = models.ManyToManyField(Album, through="Track", related_name="genres")
 
 class Track(models.Model):
     album = models.ForeignKey(Album, on_delete=models.CASCADE, related_name="tracks")
@@ -39,4 +42,4 @@ class Playlist(models.Model):
     name = models.CharField(max_length=255, null=False)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
-    tracks = models.ManyToManyField(Track, related_name="playlists")
+    tracks = models.ManyToManyField(Album, related_name="playlists")
