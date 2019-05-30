@@ -11,7 +11,7 @@ class Album(models.Model):
     title = models.CharField(max_length=255, null=False)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
-    artist = models.ForeignKey(Artist, on_delete=models.CASCADE)
+    artist = models.ForeignKey(Artist, on_delete=models.CASCADE, related_name="albums")
 
 class MediaType(models.Model):
     name = models.CharField(max_length=255, null=False)
@@ -24,9 +24,9 @@ class Genre(models.Model):
     updated_at = models.DateTimeField(auto_now=True)
 
 class Track(models.Model):
-    album = models.ForeignKey(Album, on_delete=models.CASCADE)
-    genre = models.ForeignKey(Genre, on_delete=models.CASCADE)
-    media_type = models.ForeignKey(MediaType, on_delete=models.CASCADE)
+    album = models.ForeignKey(Album, on_delete=models.CASCADE, related_name="tracks")
+    genre = models.ForeignKey(Genre, on_delete=models.CASCADE, related_name="tracks")
+    media_type = models.ForeignKey(MediaType, on_delete=models.CASCADE, related_name="tracks")
     name = models.CharField(max_length=255, null=False)
     composer = models.CharField(max_length=255, null=True)
     milliseconds = models.IntegerField(null=False)

@@ -1,0 +1,247 @@
+Find the album titled "Vinicius De Moraes", and then use the relationship-provided method to find all its tracks.
+
+    >>> q1_album = Album.objects.get(title="Vinicius De Moraes")
+    >>> q1_album
+    <Album: Album object (243)>
+    >>> for track in q1_album.tracks.all():
+    ...     print(track.name)
+    ... 
+    Dreams
+    When It's Love
+    Eruption
+    Me Wise Magic
+    Can't Get This Stuff No More
+    Humans Being
+    Can't Stop Loving You
+    Right Now
+    Poundcake
+    Why Can't This Be Love
+    Panama
+    Jump
+    Unchained
+    And the Cradle Will Rock...
+    Dance the Night Away
+    Runnin' With The Devil
+    Ain't Talkin' 'bout Love
+
+
+
+Find the artist called "Philip Glass Ensemble", and then use an relationship-provided method to find all their albums.
+
+    >>> q2_artist = Artist.objects.get(name="Philip Glass Ensemble")
+    >>> q2_artist
+    <Artist: Artist object (275)>
+    >>> q2_artist.name
+    'Philip Glass Ensemble'
+    >>> for album in q2_artist.albums.all():
+    ...     print(album.title)
+    ... 
+    Koyaanisqatsi (Soundtrack from the Motion Picture)
+
+
+
+Find the "Brazilian Music" playlist and then use an relationship-provided method to find all its tracks.
+
+    >>> q3_playlist.name
+    'Brazilian Music'
+    >>> q3_playlist.created_at
+    datetime.datetime(2004, 9, 20, 11, 30, 22, 381000, tzinfo=<UTC>)
+    >>> for track in q3_playlist.tracks.all():
+    ...     print(track.name)
+    ... 
+    Sozinho
+    Odara
+    A Luz De Tieta
+    Vai Passar
+    A Banda
+    Garota De Ipanema
+    Tarde Em Itapoã
+    O Que É O Que É ?
+    Voce e Linda
+    Sampa
+    Admirável Gado Novo
+    Açai
+    Meu Bem-Querer
+    Samurai
+    Sina
+    Fascinação
+    Madalena
+    Palco (Live)
+    Quanta (Live)
+    A Novidade (Live)
+    A Novidade
+    Filho Maravilha
+    Coração De Estudante
+    Nos Bailes Da Vida
+    Maria, Maria
+    Chocolate
+    Azul Da Cor Do Mar
+    Não Vou Ficar
+    Gostava Tanto De Você
+    Você
+    Não Quero Dinheiro
+    Bye, Bye Brasil
+    Malandragem
+    Esquinas
+    O Bêbado e a Equilibrista
+    Selassiê
+    Taj Mahal
+    O Descobridor Dos Sete Mares
+
+
+Find the "Jazz" genre and then use an relationship-provided method to find all its tracks.
+
+    >>> for track in q4_genre.tracks.all():
+    ...     print(track.name)
+    ... 
+    Desafinado
+    Garota De Ipanema
+    Samba De Uma Nota Só (One Note Samba)
+    Por Causa De Você
+    Ligia
+    Fotografia
+    Se Todos Fossem Iguais A Você (Instrumental)
+    Falando De Amor
+    Angela
+    O Boto (Bôto)
+    Canta, Canta Mais
+    Quadrant
+    Snoopy's search-Red baron
+    Moon germs
+    Stratus
+    The pleasant pheasant
+    Solo-Panhandler
+    Do what cha wanna
+    Outra Vez
+    Heart of the Night
+    De La Luz
+    Westwood Moon
+    Playtime
+    Surrender
+    As We Sleep
+    J Squared
+    Best Thing
+    Jeru
+    Compulsion
+    Tempus Fugit
+    Walkin'
+    'Round Midnight
+    Bye Bye Blackbird
+    New Rhumba
+    Generique
+    Summertime
+    The Pan Piper
+    Someday My Prince Will Come
+    My Funny Valentine (Live)
+    E.S.P.
+    Nefertiti
+    Little Church (Live)
+    Black Satin
+    Jean Pierre (Live)
+    Time After Time
+    Portia
+    Jeepers Creepers
+    Blue Rythm Fantasy
+    Drum Boogie
+    Let Me Off Uptown
+    Leave Us Leap
+    Boogie Blues
+    How High The Moon
+    Disc Jockey Jump
+    Up An' Atom
+    Lemon Drop
+    Coronation Drop
+    Overtime
+    Imagination
+    Midget
+    I'm Coming Virginia
+    Payin' Them Dues Blues
+    Jungle Drums
+    Showcase
+    Roll Call
+    Otay
+    Groovus Interruptus
+    Paris On Mine
+    In Time
+    Plan B
+    Outbreak
+    Baltimore, DC
+    Believe
+    Miles Runs The Voodoo Down
+    Doce De Carnaval (Candy All)
+    Lamento De Carnaval
+    Pretinha
+    Colibri
+    Love Is The Colour
+    Magnetic Ocean
+    Deep Waters
+    Gypsy
+    Journey Into Sunlight
+    Sunchild
+    Millenium
+    Thinking 'Bout Tomorrow
+    Jacob's Ladder
+    She Wears Black
+    Dark Side Of The Cog
+    Springsville
+    The Maids Of Cadiz
+    The Duke
+    My Ship
+    New Rhumba
+    The Meaning Of The Blues
+    Lament
+    Springsville (Alternate Take)
+    Blues For Pablo (Alternate Take)
+    I Don't Wanna Be Kissed (By Anyone But You) (Alternate Take)
+    Morning Dance
+    Jubilee
+    Rasul
+    Song For Lorraine
+    Starburst
+    Heliopolis
+    It Doesn't Matter
+    Little Linda
+    Amanda
+    Despertar
+    OAM's Blues
+    Dindi (Dindi)
+    Corcovado (Quiet Nights Of Quiet Stars)
+    Spanish moss-"A sound portrait"-Spanish moss
+    Midnight
+    Now's The Time
+    So What
+    Petits Machins (Little Stuff)
+    Opus No.1
+    Bop Boogie
+    Don't Take Your Love From Me
+    Swedish Schnapps
+    Talkin Loud and Saying Nothin
+    L'Arc En Ciel De Miles
+    Miles Ahead
+    I Don't Wanna Be Kissed (By Anyone But You)
+    End Of Romanticism
+    Blues For Pablo
+    The Meaning Of The Blues/Lament (Alternate Take)
+    Valentino's
+    When Evening Falls
+
+
+Find the track "My Time After Awhile" and then use the track/genre relationship to find its genre.
+
+    >>> q5_track = Track.objects.get(name="My Time After Awhile")
+    >>> q5_track.name
+    'My Time After Awhile'
+    >>> q5_track.genre.name
+    'Blues'
+
+
+Now find the media type of that same track.
+
+    >>> q5_track.media_type.name
+    'MPEG audio file'
+
+
+And finally, find the album that track appears on.
+
+    >>> q5_track.album.title
+    'Afrociberdelia'
